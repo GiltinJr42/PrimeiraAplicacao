@@ -1,8 +1,16 @@
 ﻿@model IEnumerable<PrimeiraAplicacao.Models.Fabricante>
 @{
+
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "Listagem de FABRICANTES";
 }
+@if (@TempData["Message"] != null)
+{
+    <div class="alert alert-success" role="alert">
+        @TempData["Message"]
+    </div>
+}
+...
 <div class="panel panel-primary">
     <div class="panel-heading">
         Relação de FABRICANTES registrados
@@ -19,7 +27,7 @@
                     </th>
                     <th></th>
                 </tr>
-              
+
             </thead>
             <tbody>
                 @foreach (var item in Model)
@@ -38,7 +46,7 @@
                         </td>
                     </tr>
                 }
-       
+
             </tbody>
         </table>
     </div>
@@ -53,8 +61,10 @@
     <script src="@Url.Content("~/scripts/DataTables/jquery.dataTables.js")"></script>
     <script src="@Url.Content("~/scripts/DataTables/dataTables.bootstrap.js")"></script>
     <script type="text/javascript">
-    $(document).ready(function () {
-            $('.table').dataTable();
+        $(document).ready(function () {
+            $('.table').dataTable({
+                "order": [[1, "asc"]]
+            });
         });
     </script>
 }
